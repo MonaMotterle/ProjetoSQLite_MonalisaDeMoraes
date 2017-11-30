@@ -74,19 +74,13 @@ class BancoDeDados:
 	def remover_cliente(self, cpf):
 		"""Deleta um cliente pelo cpf"""
 		try:
+
+			sql = """DELETE FROM clientes WHERE cpf==?"""
 			cursor = self.conexao.cursor()
+			cursor.execute(sql, (cpf,))
 
-			cursor.execute("""SELECT * FROM clientes;""")
-
-			x=0
-			for linha in cursor.fetchall():
-				if linha[2] == cpf:
-					cursor.execute("""DELETE FROM clientes;""")
-					print ('Cliente deletado')
-					x+=1
-					break
-			if x==0:
-				print ('Cliente não encontrado')
+			self.conexao.commit()
+				
 		except AttributeError:
 			print('Faça a conexão do banco antes de deletar clientes.')
 

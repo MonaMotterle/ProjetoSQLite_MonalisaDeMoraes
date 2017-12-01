@@ -71,25 +71,11 @@ class BancoDeDados:
 		except AttributeError:
 			print('Faça a conexão do banco antes de buscar clientes.')
 
-	def remover_cliente(self, cpf):
-		"""Deleta um cliente pelo cpf"""
-		try:
-
-			sql = """DELETE FROM clientes WHERE cpf==?"""
-			cursor = self.conexao.cursor()
-			cursor.execute(sql, (cpf,))
-
-			self.conexao.commit()
-				
-		except AttributeError:
-			print('Faça a conexão do banco antes de deletar clientes.')
-
 	def buscar_email(self, email):
 		"""Busca um cliente pelo email"""
 		try:
 			cursor = self.conexao.cursor()
-
-			# obtém todos os dados
+		
 			cursor.execute("""SELECT * FROM clientes;""")
 
 			x=0
@@ -103,3 +89,18 @@ class BancoDeDados:
 
 		except AttributeError:
 			print('Faça a conexão do banco antes de buscar clientes.')
+
+	def remover_cliente(self, cpf):
+		"""Deleta um cliente pelo cpf"""
+		try:
+
+			sql = """DELETE FROM clientes WHERE cpf==?"""
+			cursor = self.conexao.cursor()
+			cursor.execute(sql, (cpf,))
+
+			self.conexao.commit()
+				
+		except AttributeError:
+			print('Faça a conexão do banco antes de deletar clientes.')
+
+
